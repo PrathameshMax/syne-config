@@ -1,0 +1,30 @@
+ apt-get update
+    2  halt
+    3  vi rollupdate.yaml
+    4  kubectl create -f rollupdate.yaml 
+    5  kubetcl get deploy
+    6  kubectl get deploy
+    7  kubectl rollout status deployment redis-deployment
+    8  kubectl get po --show-labels
+    9  kubectl edit deploy redis-deployment
+   10  kubectl get po --show-labels
+   11  kubectl rollout status deployment redis-deployment
+   12  history
+   13  kubectl rollout history deployment redis-deployment
+   14  kubectl get deploy
+   15  kubectl describe deploy nginx-deploy
+   16  kubectl describe deploy redis-deploy
+   17  kubectl set image deployment redis-deployment redis-container=redis:6.0.16 --record
+   18  kubectl describe deploy redis-deploy
+   19  kubectl rollout history deployment redis-deployment
+   20  kubectl set image deployment redis-deployment redis-container=redis:6.2.6 --record
+   21  kubectl rollout history deployment redis-deployment
+   22  kubectl rollout history deployment redis-deployment --revision=3
+   23  kubectl set image deployment redis-deployment redis-container=redis:5.0 --record
+   24  kubectl rollout history deployment redis-deployment
+   25  kubectl get deploy redis-deployment -o wide
+   26  kubectl rollout undo deployment redis-deployment
+   27  kubectl get deploy redis-deployment -o wide
+   28  kubectl rollout undo deployment redis-deployment --to-revision=3
+   29  kubectl get deploy redis-deployment -o wide
+   30  history
