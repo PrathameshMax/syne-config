@@ -1,0 +1,77 @@
+----- blue 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-1.0
+  labels:
+    app: nginx-1.0
+    env: prod
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-1.0
+
+  template:
+    metadata:
+      labels:
+        app: nginx-1.0
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+            - containerPort: 80
+
+
+
+---- green  
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-1.1
+  labels:
+    app: nginx-1.1
+    env: prod
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-1.1
+  template:
+    metadata:
+      labels:
+        app: nginx-1.1
+    spec:
+      containers:
+        - name: nginx
+          image: cammey20/amar_custom_nginx
+          ports:
+            - containerPort: 80
+
+
+
+
+
+
+----- load-balancer
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: fnt-service
+  labels:
+    app: nginx-1.0
+    env: prod
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-1.0
+  ports:
+    - port: 80
+      targetPort: 80
+
